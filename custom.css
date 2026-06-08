@@ -80,7 +80,7 @@ h2.text-center::after { margin-left: auto; margin-right: auto; }
   inset: 0;
   background-image: url('./assets/venue/hero-bg.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   opacity: 0.28;
 }
 
@@ -250,6 +250,8 @@ h2.text-center::after { margin-left: auto; margin-right: auto; }
   border-radius: 13px;
   box-shadow: 0 2px 16px rgba(0,0,0,.07);
   transition: transform .2s, box-shadow .2s;
+  position: relative;
+  cursor: pointer;
 }
 
 .speaker-card:hover {
@@ -304,6 +306,8 @@ h2.text-center::after { margin-left: auto; margin-right: auto; }
   border-radius: 11px;
   box-shadow: 0 2px 12px rgba(0,0,0,.06);
   transition: transform .2s;
+  position: relative;
+  cursor: pointer;
 }
 
 .chair-card:hover { transform: translateY(-2px); }
@@ -374,10 +378,9 @@ h2.text-center::after { margin-left: auto; margin-right: auto; }
 /* ── GALLERY ─────────────────────────────────────────── */
 .gallery-group-photo {
   width: 100%;
-  height: 420px;
+  height: auto;
   border-radius: 14px;
-  object-fit: cover;
-  object-position: center;
+  display: block;
   box-shadow: 0 6px 30px rgba(0,0,0,.14);
 }
 
@@ -413,8 +416,10 @@ h2.text-center::after { margin-left: auto; margin-right: auto; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   transition: transform .3s;
   display: block;
+  cursor: pointer;
 }
 
 .gallery-item:hover img { transform: scale(1.05); }
@@ -432,6 +437,46 @@ h2.text-center::after { margin-left: auto; margin-right: auto; }
   border-radius: 9px;
 }
 
+/* ── LIGHTBOX ────────────────────────────────────────── */
+.cf-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.92);
+  z-index: 9999;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.cf-lightbox.open { display: flex; }
+
+.cf-lightbox img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  cursor: default;
+}
+
+.cf-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: .8;
+  transition: opacity .15s;
+}
+.cf-lightbox-close:hover { opacity: 1; }
+
+.gallery-group-photo { cursor: pointer; }
+
 /* ── FOOTER ──────────────────────────────────────────── */
 footer a { color: #8ba3bc !important; text-decoration: none; }
 footer a:hover { color: var(--cf-blue) !important; }
@@ -446,7 +491,7 @@ footer a:hover { color: var(--cf-blue) !important; }
   .cf-hero-title { font-size: 3.5rem; }
   .cf-stat { padding: .5rem 1rem; border-left: none; border-top: 1px solid rgba(255,255,255,.1); }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-group-photo, .gallery-group-placeholder { height: 280px; }
+  .gallery-group-placeholder { height: 280px; }
 }
 
 @media (max-width: 576px) {
